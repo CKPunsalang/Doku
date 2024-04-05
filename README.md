@@ -9,4 +9,4 @@ Doku is a sudoku app with a twist. It aims to make a traditional game more appro
 
 # Where is Doku currently?
 (04/04/24)
-As of now, Doku is still in its beginning phases. It's story and general goals have been created, but implementation is still being worked on.
+As of now, Doku is still in its beginning phases. Its story and general goals have been created, but implementation is still being worked on.
