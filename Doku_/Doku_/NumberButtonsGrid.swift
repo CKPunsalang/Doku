@@ -14,7 +14,7 @@ struct NumberButtonsGrid: View {
     var numColor: Color = .white
     var body: some View {
         NumberButton(color: buttonColor, buttonNumber: number, action: buttonWasPressed, numColor: numColor)
-            .scaleEffect(selectedNumber == number ? 1.1 : 1.0) // Slightly larger if selected
+            .scaleEffect(selectedNumber == number ? 1.3 : 1.0) // Slightly larger if selected
             .animation(.easeInOut(duration: 0.2), value: selectedNumber)
     }
     
