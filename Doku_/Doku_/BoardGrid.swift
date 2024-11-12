@@ -24,7 +24,7 @@ struct BoardGrid: View {
 
         }
         .onAppear {
-            print(difficulty)
+            //print(difficulty)
             generatedBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
             generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
             let boards = runDoku(&generatedBoard, &difficulty)
@@ -45,7 +45,7 @@ struct BoardGrid: View {
                             NumberCircleView(number: $generatedBoard[rowIndex][colIndex], truth: $generatedNumbers[rowIndex][colIndex])
                                 .onTapGesture {
                                     selectedCell = [rowIndex, colIndex]
-                                    print(selectedCell ?? -1)
+                                    //print(selectedCell ?? -1)
                                     
                                     if generatedBoard[rowIndex][colIndex] == 0
                                         && generatedNumbers[rowIndex][colIndex] == false
@@ -61,6 +61,10 @@ struct BoardGrid: View {
                                     }
                                     else if generatedBoard[rowIndex][colIndex] == checkBoard[rowIndex][colIndex] &&  generatedBoard[rowIndex][colIndex] != 0 {
                                         print("correct")
+                                    }
+                                    
+                                    if generatedBoard == checkBoard {
+                                        print("Congratulations! You solved the puzzle!")
                                     }
                                 }
                         }
@@ -82,7 +86,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuTeal, number: 1)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 1)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 1)
                     }
                     
                     //2
@@ -90,7 +94,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuYellow, number: 2)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 2)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 2)
                     }
                     
                     // 3
@@ -98,7 +102,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuPurple, number: 3)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 3)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 3)
                     }
                     
                     // 4
@@ -106,7 +110,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuRed, number: 4)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 4)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 4)
                     }
                     
                     // 5
@@ -114,7 +118,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuBlue, number: 5)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 5)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 5)
                     }
                     
                     // 6
@@ -122,7 +126,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGreen, number: 6)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 6)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 6)
                     }
                     
                     // 7
@@ -130,7 +134,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuNavy, number: 7)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 7)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 7)
                     }
                     
                     // 8
@@ -138,7 +142,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuMaroon, number: 8)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 8)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 8)
                     }
                     
                     // 9
@@ -146,7 +150,7 @@ struct BoardGrid: View {
                         NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuOrange, number: 9)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGrey, number: 9)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 9)
                     }
                 }
             }
