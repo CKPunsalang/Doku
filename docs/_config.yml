@@ -20,7 +20,7 @@
 
 title: Calla Punsalang
 email: ckpunsalang@gmail.com
-description: | # >- this means to ignore newlines until "baseurl:"
+description: >- # >- this means to ignore newlines until "baseurl:"
   "Hello! My name is Calla Punsalang and welcome to my site. I'm a recent graduate from California State University
 Channel Islands. From there, I obtained my Bachelor in Science with a major in Computer Science and a
 minor in Mathematics. During my time, I worked on a few projects:
