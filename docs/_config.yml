@@ -30,6 +30,7 @@ twitter_username: ""
 github_username:  "CKPunsalang"
 
 # Build settings
+theme: jekyll-theme-minimal
 remote_theme: pages-themes/minimal@v0.2.0
 # theme: minima
 plugins:
