@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Calla Punsalang
+title: "Calla Punsalang"
 email: ckpunsalang.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -32,7 +32,6 @@ github_username:  CKPunsalang
 # Build settings
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
-  - jekyll-feed
   - jekyll-remote-theme
 
 
