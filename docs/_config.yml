@@ -18,45 +18,21 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Calla Punsalang
-email: ckpunsalang@gmail.com
-description: >- # >- this means to ignore newlines until "baseurl:"
+title: Your awesome title
+email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-
-#  Hello! My name is Calla Punsalang and welcome to my site. I'm a recent graduate from California State University
-#  Channel Islands. From there, I obtained my Bachelor in Science with a major in Computer Science and a
-#  minor in Mathematics. During my time, I worked on a few projects.
-
-#  Doku (an iOS sudoku app)
-#  ASL Alphabet Categorizer (image classification using transfer learning on VGG-16 and Xception)
-#  CiscoDuo Workbooks (Log visualization of authentication events using Microsoft Azure)
-#  Phishing Simulations (Various phishing simulations via social enginerring using Microsoft Defender)
-
-#  When I'm not looking to fine tune and add to my professional skillset, I am most often crocheting plushies for 
-#  my Etsy shop, ckplushies. I've followed so many patterns, and even created my own for Blanka Chan Doll from 
-#  the Street Fighter franchise. When my wrists need a break, I switch over to play video games. My favorite one
-#  currently are Marvel Snap, Overwatch2, and A Little to the Left. I also regularly go to the gym with my partner
-#  to keep up my health, with as much as programmers sit around, it's good to get the blood flowing!
-
-# Take a look around my site and I hope you enjoy your visit!
-  	
-#  Write an awesome description for your new site here. You can edit this
-#  line in _config.yml. It will appear in your document head meta (for
-#  Google search results) and in your feed.xml site description.
-baseurl: "/docs" # the subpath of your site, e.g. /blog
-url: "https://ckpunsalang.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  CKPunsalang
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: jekyllrb
+github_username:  jekyll
 
 # Build settings
-remote_theme: pages-themes/minimal@v0.2.0
+theme: minima
 plugins:
-  - jekyll-remote-theme # add this line to the plugins list if you already have one
-#  - jekyll-feed
-# theme: minimal
-# plugins:
-#  - jekyll-feed
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -77,3 +53,4 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
