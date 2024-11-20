@@ -9,30 +9,33 @@ import SwiftUI
 // New imports
 import UIKit
 import Foundation
+import AVKit
 
 struct BoardGrid: View {
     @State private var generatedBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
     @State private var checkBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
     @State private var generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
+    @State private var correctness = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
     @State private var selectedCell: [Int]? = [-1, -1]
     @State var selectedNumber: Int = -1
     @State private var rotation: Double = 0
     @State var difficulty: Int
+    @State private var correctnessMessage: String?
+    @State private var gameWon: Bool = false
+    @State var correct: Bool = false
+
     
     var body: some View {
         VStack {
 
         }
         .onAppear {
-            //print(difficulty)
             generatedBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
             generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
             let boards = runDoku(&generatedBoard, &difficulty)
             generatedBoard = boards.puzzle
             checkBoard = boards.complete
             generatedNumbers = presetGenerator(&generatedNumbers)
-//            print(checkBoard)
-//            print(generatedBoard)
         }
         
         ZStack {
@@ -42,36 +45,22 @@ struct BoardGrid: View {
                 ForEach(0..<generatedBoard.count, id: \.self) { rowIndex in
                     GridRow {
                         ForEach(0..<generatedBoard[rowIndex].count, id: \.self) { colIndex in
-                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex], truth: $generatedNumbers[rowIndex][colIndex])
+                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex], truth: $generatedNumbers[rowIndex][colIndex], correct: $correctness[rowIndex][colIndex])
                                 .onTapGesture {
-                                    selectedCell = [rowIndex, colIndex]
-                                    //print(selectedCell ?? -1)
+                                    handleCellTap(rowIndex: rowIndex, colIndex: colIndex)
                                     
-                                    if generatedBoard[rowIndex][colIndex] == 0
-                                        && generatedNumbers[rowIndex][colIndex] == false
-                                        && frequencyCheck(&generatedBoard, selectedNumber) {
-                                        generatedBoard[rowIndex][colIndex] = selectedNumber
-                                    }
-                                    else if generatedBoard[rowIndex][colIndex] != 0 && generatedNumbers[rowIndex][colIndex] == false {
-                                        generatedBoard[rowIndex][colIndex] = 0
-                                    }
-                                    
-                                    if generatedBoard[rowIndex][colIndex] != checkBoard[rowIndex][colIndex] && generatedBoard[rowIndex][colIndex] != 0 {
-                                        print("wrong")
-                                    }
-                                    else if generatedBoard[rowIndex][colIndex] == checkBoard[rowIndex][colIndex] &&  generatedBoard[rowIndex][colIndex] != 0 {
-                                        print("correct")
-                                    }
-                                    
-                                    if generatedBoard == checkBoard {
-                                        print("Congratulations! You solved the puzzle!")
-                                    }
                                 }
                         }
                     }
                 }
             }
+            if gameWon {
+                GifImage("congrats")
+                    .frame(width: 400 , height: 200, alignment: .center)
+
+            }
         }
+
         
         
         ZStack {
@@ -361,46 +350,72 @@ struct BoardGrid: View {
     struct NumberCircleView: View {
         @Binding var number: Int
         @Binding var truth: Bool
+        @Binding var correct: Bool
         
         var body: some View {
             // Preset
             if truth {
                 switch number {
-                case 1: NumberCircle(color: Color.dokuTeal, number: "1")
-                case 2: NumberCircle(color: Color.dokuYellow, number: "2")
-                case 3: NumberCircle(color: Color.dokuPurple, number: "3")
-                case 4: NumberCircle(color: Color.dokuRed, number: "4")
-                case 5: NumberCircle(color: Color.dokuBlue, number: "5")
-                case 6: NumberCircle(color: Color.dokuGreen, number: "6")
-                case 7: NumberCircle(color: Color.dokuNavy, number: "7")
-                case 8: NumberCircle(color: Color.dokuMaroon, number: "8")
-                case 9: NumberCircle(color: Color.dokuOrange, number: "9")
-                default: NumberCircle(color: Color.dokuGrey, number: " ")  // Empty cell
+                case 1: NumberCircle(color: Color.dokuTeal, number: "1", correct: true)
+                case 2: NumberCircle(color: Color.dokuYellow, number: "2", correct: true)
+                case 3: NumberCircle(color: Color.dokuPurple, number: "3", correct: true)
+                case 4: NumberCircle(color: Color.dokuRed, number: "4", correct: true)
+                case 5: NumberCircle(color: Color.dokuBlue, number: "5", correct: true)
+                case 6: NumberCircle(color: Color.dokuGreen, number: "6", correct: true)
+                case 7: NumberCircle(color: Color.dokuNavy, number: "7", correct: true)
+                case 8: NumberCircle(color: Color.dokuMaroon, number: "8", correct: true)
+                case 9: NumberCircle(color: Color.dokuOrange, number: "9", correct: true)
+                default: NumberCircle(color: Color.dokuGrey, number: " ", correct: true)  // Empty cell
                 }
             }
             // User
             else {
                 switch number {
-                case 1: NumberCircle(color: Color.dokuTeal, fontType: .bold, number: "1")
-                case 2: NumberCircle(color: Color.dokuYellow, fontType: .bold, number: "2")
-                case 3: NumberCircle(color: Color.dokuPurple, fontType: .bold, number: "3")
-                case 4: NumberCircle(color: Color.dokuRed, fontType: .bold, number: "4")
-                case 5: NumberCircle(color: Color.dokuBlue, fontType: .bold, number: "5")
-                case 6: NumberCircle(color: Color.dokuGreen, fontType: .bold, number: "6")
-                case 7: NumberCircle(color: Color.dokuNavy, fontType: .bold, number: "7")
-                case 8: NumberCircle(color: Color.dokuMaroon, fontType: .bold, number: "8")
-                case 9: NumberCircle(color: Color.dokuOrange, fontType: .bold, number: "9")
-                default: NumberCircle(color: Color.dokuGrey, number: " ")  // Empty cell
+                case 1: NumberCircle(color: Color.dokuTeal, fontType: .bold, number: "1", correct: correct)
+                case 2: NumberCircle(color: Color.dokuYellow, fontType: .bold, number: "2", correct: correct)
+                case 3: NumberCircle(color: Color.dokuPurple, fontType: .bold, number: "3", correct: correct)
+                case 4: NumberCircle(color: Color.dokuRed, fontType: .bold, number: "4", correct: correct)
+                case 5: NumberCircle(color: Color.dokuBlue, fontType: .bold, number: "5", correct: correct)
+                case 6: NumberCircle(color: Color.dokuGreen, fontType: .bold, number: "6", correct: correct)
+                case 7: NumberCircle(color: Color.dokuNavy, fontType: .bold, number: "7", correct: correct)
+                case 8: NumberCircle(color: Color.dokuMaroon, fontType: .bold, number: "8", correct: correct)
+                case 9: NumberCircle(color: Color.dokuOrange, fontType: .bold, number: "9", correct: correct)
+                default: NumberCircle(color: Color.dokuGrey, number: " ", correct: correct)  // Empty cell
                 }
             }
         }
     }
     
+    private func handleCellTap(rowIndex: Int, colIndex: Int) {
+            selectedCell = [rowIndex, colIndex]
+
+            if generatedBoard[rowIndex][colIndex] == 0
+                && generatedNumbers[rowIndex][colIndex] == false
+                && frequencyCheck(&generatedBoard, selectedNumber) {
+                generatedBoard[rowIndex][colIndex] = selectedNumber
+            } else if generatedBoard[rowIndex][colIndex] != 0 && generatedNumbers[rowIndex][colIndex] == false {
+                generatedBoard[rowIndex][colIndex] = 0
+            }
+
+            // Check if the selected cell is correct or wrong
+            if generatedBoard[rowIndex][colIndex] != checkBoard[rowIndex][colIndex] && generatedBoard[rowIndex][colIndex] != 0 {
+                correctnessMessage = "Wrong"
+                correctness[rowIndex][colIndex] = false
+            } else if generatedBoard[rowIndex][colIndex] == checkBoard[rowIndex][colIndex] && generatedBoard[rowIndex][colIndex] != 0 {
+                correctnessMessage = "Correct"
+                correctness[rowIndex][colIndex] = true
+            }
+
+            // Check if the game is complete
+            if generatedBoard == checkBoard {
+                gameWon = true
+            }
+        }
     
 }
 
 #Preview {
-    BoardGrid(selectedNumber: 5, difficulty: 40)
+    BoardGrid(selectedNumber: 5, difficulty: 10)
         .background() {
             Color.dokuDarkGrey
                 .ignoresSafeArea()
