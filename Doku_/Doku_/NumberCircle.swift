@@ -13,24 +13,36 @@ struct NumberCircle: View {
     var fontType: Font.Weight = .regular
     var number: String = " "
     var numColor = Color.white
+    @State var correct: Bool
+    @State private var turnCount: Int = 0
     var body: some View {
-        Text(number)
-            .font(.largeTitle)
-            .fontWeight(fontType)
-            .frame(width: 35, height: 35, alignment: .center)
-            .foregroundStyle(numColor)
-            .background(color)
-            .clipShape(Circle())
-        /*
-            .overlay(
-                Circle()
-                    .stroke(borderColor, lineWidth: 2.5) // Add a border with desired color and width
-                    .padding(2.5)
-            )
-         */
+        ZStack {
+            Text(number)
+                .font(.largeTitle)
+                .fontWeight(fontType)
+                .frame(width: 35, height: 35, alignment: .center)
+                .foregroundStyle(numColor)
+                .background(color)
+                .clipShape(Circle())
+                .onAppear {
+                    turnCount += 1
+                }
+            
+            if !correct && number != " " {
+                Image(systemName: "xmark.seal.fill")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.red, .dokuGrey)
+                    .frame(width: 35, height: 35, alignment: .center)
+                    .font(.system(size: 30))
+                    .symbolEffect(.rotate, value: turnCount)
+            }
+        }
     }
 }
 
+
+
 #Preview {
-    NumberCircle(borderColor: Color.dokuRed)
+    NumberCircle(borderColor: Color.dokuRed, number: "1", correct: false)
 }
+
