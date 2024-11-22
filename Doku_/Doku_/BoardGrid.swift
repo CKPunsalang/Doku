@@ -4,9 +4,15 @@
 //
 //  Created by Calla Punsalang on 9/18/24.
 //
+// The solve(), valid(), printBoard(), and findEmpty() are based on Python code by Tech With Tim
+//
+// Link to the webpage:
+// https://www.techwithtim.net/tutorials/python-programming/sudoku-solver-backtracking/part-2
+//
+// Link to the YouTube video:
+// https://www.youtube.com/watch?v=lK4N8E6uNr4
 
 import SwiftUI
-// New imports
 import UIKit
 import Foundation
 import AVKit
@@ -17,10 +23,9 @@ struct BoardGrid: View {
     @State private var generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
     @State private var correctness = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
     @State private var selectedCell: [Int]? = [-1, -1]
+    
     @State var selectedNumber: Int = -1
-    @State private var rotation: Double = 0
     @State var difficulty: Int
-    @State private var correctnessMessage: String?
     @State private var gameWon: Bool = false
     @State var correct: Bool = false
 
@@ -188,6 +193,7 @@ struct BoardGrid: View {
     }
 
     // Sudoku solver algorithm
+    
     func solve(_ bo: inout [[Int]]) -> Bool {
         guard let find = findEmpty(bo) else { return true }
         let (row, col) = find
@@ -298,9 +304,6 @@ struct BoardGrid: View {
         
         var puzzleBoard = isSolvable(&unsolvedBoard, &difficulty)
         
-//        print(completedBoard)
-//        print(puzzleBoard)
-        
         return (complete: completedBoard, puzzle: puzzleBoard)
     }
     
@@ -399,10 +402,8 @@ struct BoardGrid: View {
 
             // Check if the selected cell is correct or wrong
             if generatedBoard[rowIndex][colIndex] != checkBoard[rowIndex][colIndex] && generatedBoard[rowIndex][colIndex] != 0 {
-                correctnessMessage = "Wrong"
                 correctness[rowIndex][colIndex] = false
             } else if generatedBoard[rowIndex][colIndex] == checkBoard[rowIndex][colIndex] && generatedBoard[rowIndex][colIndex] != 0 {
-                correctnessMessage = "Correct"
                 correctness[rowIndex][colIndex] = true
             }
 

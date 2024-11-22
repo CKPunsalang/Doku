@@ -20,7 +20,7 @@ struct NumberButtonsGrid: View {
     
     
     func buttonWasPressed(button: NumberButton) {
-        print(button.buttonNumber)
+        //print(button.buttonNumber)
         selectedNumber = button.buttonNumber
     }
 }
