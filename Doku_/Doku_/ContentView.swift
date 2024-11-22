@@ -41,18 +41,23 @@ struct SecondView: View {
                     .frame(width: 1000, height: 1000, alignment: .center)
                     .ignoresSafeArea()
                 VStack {
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 40), label: {
+                    NavigationLink(destination: ThirdView(selectedDifficulty: 5), label: {
                         Image("dokuEasy")
                             .resizable()
                             .frame(width: 150, height: 75, alignment: .leading)
                     })
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 55), label: {
+                    NavigationLink(destination: ThirdView(selectedDifficulty: 40), label: {
                         Image("dokuMedium")
                             .resizable()
                             .frame(width: 150, height: 75, alignment: .leading)
                     })
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 70), label: {
+                    NavigationLink(destination: ThirdView(selectedDifficulty: 55), label: {
                         Image("dokuHard")
+                            .resizable()
+                            .frame(width: 150, height: 75, alignment: .leading)
+                    })
+                    NavigationLink(destination: ThirdView(selectedDifficulty: 70), label: {
+                        Image("dokuExpert")
                             .resizable()
                             .frame(width: 150, height: 75, alignment: .leading)
                     })

@@ -4,6 +4,8 @@
 //
 //  Created by Calla Punsalang on 11/15/24.
 //
+//  This Swift code was written based on a Swift Tutorial by "Swift and Tips"
+//  https://www.youtube.com/watch?v=9fz8EW-dX-I&t=332s 
 
 import SwiftUI
 import WebKit
