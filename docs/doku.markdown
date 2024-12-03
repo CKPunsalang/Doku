@@ -83,6 +83,8 @@ While Doku doesn't change the rules of Sudoku, there are various features that m
 
 Let's see what Doku has to offer at a first glance.
 
+<img src="/Doku/images/doku_light.png" alt="Doku Light Appearance" width="292" height="579"> <img src="/Doku/images/doku_dark.png" alt="Doku Dark Appearance" width="292" height="579">
+
 Doku creates a more playful and cozy space to play Sudoku. The vibrant, smooth, number-filled bubbles and swirling colors in the background captivate players, transforming the puzzle into a more engaging and game-like experience. Doku offers both light and dark mode, to allow players to enjoy Doku at anytime. The color coordinated bubbles also allow the player the option to focus more on color pattterns rather than number ones. The grid background breaks up the 9x9 grid into smaller 3x3 grids, which helps the player see what numbers are missing from each box.
 
 There are some game mechanics that help players as well. 
