@@ -6,3 +6,5 @@ layout: page
 title: Home
 
 ---
+
+*[Calla Punsalang's Resume]({{ site.baseurl  }}{% link /content/CKPunsalang_Resume_110724.pdf %}){:target="_blank"}*
