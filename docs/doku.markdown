@@ -111,3 +111,10 @@ When players finish a puzzle correctly, they are greeted with a congratulation m
 ### **Playing a Round of Doku**
 
 **insert video of Doku game here**
+
+<video width="292" 
+	   height="579"
+	   controls="controls">
+	<source src="/Doku/content/doku_gameplay.mp4"
+			type="video/mp4" />
+</video>
