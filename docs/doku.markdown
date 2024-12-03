@@ -78,3 +78,26 @@ The puzzle generation is now working and generates puzzles in their correct plac
 This is where Doku is currently at. There is a working number line at the bottom for players to fill in their guesses and the puzzle is automatically generated with the page loading. 
 
 ### **Features**
+
+While Doku doesn't change the rules of Sudoku, there are various features that make the game more accessible to those who want to pick up the game or those who struggle with regular Sudoku.
+
+Let's see what Doku has to offer at a first glance.
+
+Doku creates a more playful and cozy space to play Sudoku. The vibrant, smooth, number-filled bubbles and swirling colors in the background captivate players, transforming the puzzle into a more engaging and game-like experience. Doku offers both light and dark mode, to allow players to enjoy Doku at anytime. The color coordinated bubbles also allow the player the option to focus more on color pattterns rather than number ones. The grid background breaks up the 9x9 grid into smaller 3x3 grids, which helps the player see what numbers are missing from each box.
+
+There are some game mechanics that help players as well. 
+
+Numbers that are placed by the player are bolded, which match the bolded button bubbles at the bottom of the screen. This slight change in the weight of the font not only allows players to differentiate the pre-generated bubbles with thie own guesses, but allows players to visually see their progress in completing the puzzle. 
+
+Doku also has a "helping-hand" system designed to guide players along while playing. If a player places the wrong answer on a bubble, a small animation on top of their guess plays, giving a visual indication that their answer is incorrect. The color of their guess still peaks out from behind their number guess, so players know what number they tried originally. There is no impact on the player for an incorrect guess so they can simply tap the bubble again to remove the wrong guess and try again.
+
+Players select a number/color from the button bubbles at the bottom of the screen and that switches them into placement mode for that specific number. Their current selection will be slightly larger than the other buttons, so that they always know what bubbles they are currently placing without having to actually place one on the board. This focus on one bubble type at a time, slows the game down and allows the player to think about one number or color at a time rather than everything all at once. 
+
+Not only do the bubble buttons grow and shrink in size, but as another "helping-hand" feature, when a player has filled in the maximum amount for that type of bubble (9), the bubble button greys out and more of that type of bubble cannot be placed on the board.
+
+When players finish a puzzle correctly, they are greeted with a congratulation message. 
+
+
+### **Playing a Round of Doku**
+
+**insert video of Doku game here**
