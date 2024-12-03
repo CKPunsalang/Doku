@@ -89,13 +89,21 @@ Doku creates a more playful and cozy space to play Sudoku. The vibrant, smooth, 
 
 There are some game mechanics that help players as well. 
 
+<img src="/Doku/images/doku_bold.png" alt="Doku with correct guesses" width="292" height="579">
+
 Numbers that are placed by the player are bolded, which match the bolded button bubbles at the bottom of the screen. This slight change in the weight of the font not only allows players to differentiate the pre-generated bubbles with thie own guesses, but allows players to visually see their progress in completing the puzzle. 
 
+<img src="/Doku/images/doku_wrong.png" alt="Doku Stage 6" width="292" height="579">
+
 Doku also has a "helping-hand" system designed to guide players along while playing. If a player places the wrong answer on a bubble, a small animation on top of their guess plays, giving a visual indication that their answer is incorrect. The color of their guess still peaks out from behind their number guess, so players know what number they tried originally. There is no impact on the player for an incorrect guess so they can simply tap the bubble again to remove the wrong guess and try again.
+
+<img src="/Doku/images/doku_example.png" alt="Doku Stage 6" width="292" height="579">
 
 Players select a number/color from the button bubbles at the bottom of the screen and that switches them into placement mode for that specific number. Their current selection will be slightly larger than the other buttons, so that they always know what bubbles they are currently placing without having to actually place one on the board. This focus on one bubble type at a time, slows the game down and allows the player to think about one number or color at a time rather than everything all at once. 
 
 Not only do the bubble buttons grow and shrink in size, but as another "helping-hand" feature, when a player has filled in the maximum amount for that type of bubble (9), the bubble button greys out and more of that type of bubble cannot be placed on the board.
+
+<img src="/Doku/images/doku_congrats.png" alt="Doku Stage 6" width="292" height="579">
 
 When players finish a puzzle correctly, they are greeted with a congratulation message. 
 
