@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Doku | Calla Punsalang</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Doku" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi, I’m Calla Punsalang. CSU Channel Islands undergraduate with a B.S. in Computer Science, Minor in Mathematics. Graduate of DeAnza College with A.A in Liberal Arts with a focus in Science, Mathematics, and Engineering." />
+<meta property="og:description" content="Hi, I’m Calla Punsalang. CSU Channel Islands undergraduate with a B.S. in Computer Science, Minor in Mathematics. Graduate of DeAnza College with A.A in Liberal Arts with a focus in Science, Mathematics, and Engineering." />
+<link rel="canonical" href="http://localhost:4000/Doku/projects/doku/" />
+<meta property="og:url" content="http://localhost:4000/Doku/projects/doku/" />
+<meta property="og:site_name" content="Calla Punsalang" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Doku" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Hi, I’m Calla Punsalang. CSU Channel Islands undergraduate with a B.S. in Computer Science, Minor in Mathematics. Graduate of DeAnza College with A.A in Liberal Arts with a focus in Science, Mathematics, and Engineering.","headline":"Doku","url":"http://localhost:4000/Doku/projects/doku/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Doku/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/Doku/feed.xml" title="Calla Punsalang" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Doku/">Calla Punsalang</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Doku/about/">About</a><a class="page-link" href="/Doku/projects/">Projects</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Doku</h1>
+  </header>
+
+  <div class="post-content">
+    <h2 id="doku-poster"><em><a href="/Doku/content/capstone_poster_final_true.pdf" target="_blank">Doku Poster</a></em></h2>
+
+<h3 id="concept"><strong>Concept</strong></h3>
+
+<p>I wanted to create a Sudoku app that made Sudoku more enticing to a wider range of audience. Traditional black-and-white Sudoku grids, while functional, can feel overly clinical, uninspiring, and rather boring, especially for those new to the game. The lack of visual variety makes the puzzle seem intimidating or monotonous, rather than inviting or fun. This minimalistic design can unintentionally give the impression that Sudoku is a rigid or purely intellectual exercise, alienating people who prefer visually stimulating or interactive experiences.</p>
+
+<p>Doku adds color, animations, and moving elements that sparks a sense of playfullness and accessibility, especially those who may have an aversion to numbers. These design elements help to transform the traditional and monotonous game of Sudoku into something more lively where players can focus on patterns and the joy of colors while still engaging in healthy mental challenge and stimulation.</p>
+
+<p>My goal was to allow this amazing brain game to be more accessible to:</p>
+<ul>
+  <li>The elderly, who can focus on just the colors and their patterns</li>
+  <li>Those who hate math or have dyscalculia</li>
+  <li>Children who would benefit from the mental workout that Sudoku provides</li>
+</ul>
+
+<p>Doku does not change the game of Sudoku, it simply gives it a new look and adds some features that helps those newer to the game. For those new to Sudoku here are the basic rules:</p>
+
+<ol>
+  <li>You can fill each spot on the 9x9 grid with any number 1-9 (the 9x9 grid is broken up into 9 smaller grids of 3x3)</li>
+  <li>The same number cannot be repeated in the same <strong>row</strong></li>
+  <li>The same number cannot be repeated in the same <strong>column</strong></li>
+  <li>The same number cannot be repeated in the same <strong>3x3 sqaure</strong></li>
+</ol>
+
+<h3 id="implementation"><strong>Implementation</strong></h3>
+
+<p>While Doku is written entirely in Swift and SwiftUI now, it did not start off that way.</p>
+
+<p>Before this project, I had never coded in Swift or SwiftUI so I knew learning that would be imperative. However, that did not mean that the first and only thing to do was to learn this new language. I knew other coding languages.</p>
+
+<p>So, I wrote the puzzle generating algorithm for Doku in Python on Google Colab while using LinkedIn Learning courses to teach myself Swift/SwiftUI.</p>
+
+<p>My algorithm for puzzle creation is as follows:</p>
+<ol>
+  <li>Create an empty sudoku board (a 9x9 grid).</li>
+  <li>Fill the diagonal 3x3 squares with random numbers 1-9 (following the standard rules of having no repeating numbers within the 3x3 square).</li>
+  <li>Use a Sudoku solver to “solve” the partially filled Sudoku board.</li>
+  <li>Randomly remove a set amount of numbers from the “solved” board.</li>
+  <li>From this created puzzle, use the same Sudoku solver to see if the created puzzle is solvable.</li>
+  <li>If the generated puzzle is solvable, then the algorithm is finished. If not, then repeat Step 4 again until a correct puzzle is created.</li>
+</ol>
+
+<p>Once I had completed my LinkedIn Learning courses and perfected my Python algorithm, it was time to convert the latter into the former. Of course, as it was my first time coding in Swift/SwiftUI, there were some hiccups, but with determination (and a lot of research), I now had my Python algorithm in an Xcode project, written in Swift.</p>
+
+<p>From here, I created the UI elements needed to actually play a game of Sudoku. Below are the various stages of Doku in development:</p>
+
+<p><img src="/Doku/images/doku_python.png" alt="Python generated Sudoku puzzle" width="292" height="579" /></p>
+
+<p>This is the output of the Python generatated Sudoku puzzles. The top grid of numbers is the generated puzzle, and the bottom is the solved version.</p>
+
+<p><img src="/Doku/images/doku_stage1.png" alt="Doku Stage 1" width="292" height="579" /></p>
+
+<p>At this stage, there is still no backend for Doku as the puzzle algorithm is still in Python. However, I wanted to get a feel for using Swift and SwiftUI so I made a base grid for where and how I would want the puzzle to generate.</p>
+
+<p><img src="/Doku/images/doku_stage2.png" alt="Doku Stage 2" width="292" height="579" /></p>
+
+<p>This stage is similar to the previous one. I’m continuing to add and play around more with SwiftUI and various UI elements, there is still no puzzle generating algorithm.</p>
+
+<p><img src="/Doku/images/doku_stage3.png" alt="Doku Stage 3" width="292" height="579" /></p>
+
+<p>The UI has stayed the same at this stage, but there is now a backend working. On the grid there are some numbers that are filled out, still no puzzle generating algorithm but I wanted to test out how the grid would look with numbers filled in. Filling in random numbers also allowed me to play with the spacing of the numbers.</p>
+
+<p><img src="/Doku/images/doku_stage4.png" alt="Doku Stage 4" width="292" height="579" /></p>
+
+<p>There is now a number line of buttons at the bottom of the screen. When clicked, the corresponding number would show in Xcode’s debugging terminal, but not on the actual screen. There was also a major overhaul of the grid UI, now following the more bubble-y and playful nature that Doku is intended to have. Although not shown, at this point the Python algorithm had been convereted to Swift and I was working on debugging it through Swift Playgrounds.</p>
+
+<p><img src="/Doku/images/doku_stage5.png" alt="Doku Stage 5" width="292" height="579" /></p>
+
+<p>The puzzle generation is now working and generates puzzles in their correct place and corresponding colors. The number line works too and allows players to fill in their guesses on the puzzle board (the bolded numbers are numbers placed by the player). The puzzles are not generated automatically at this point, as the Doku logo needs to be pressed to generate one.</p>
+
+<p><img src="/Doku/images/doku_stage6.png" alt="Doku Stage 6" width="292" height="579" /></p>
+
+<p>This is where Doku is currently at. There is a working number line at the bottom for players to fill in their guesses and the puzzle is automatically generated with the page loading.</p>
+
+<h3 id="features"><strong>Features</strong></h3>
+
+<p>While Doku doesn’t change the rules of Sudoku, there are various features that make the game more accessible to those who want to pick up the game or those who struggle with regular Sudoku.</p>
+
+<p>Let’s see what Doku has to offer at a first glance.</p>
+
+<p><img src="/Doku/images/doku_ligth.png" alt="Doku Light Appearance" width="292" height="579" /> <img src="/Doku/images/doku_dark.png" alt="Doku Dark Appearance" width="292" height="579" /></p>
+
+<p>Doku creates a more playful and cozy space to play Sudoku. The vibrant, smooth, number-filled bubbles and swirling colors in the background captivate players, transforming the puzzle into a more engaging and game-like experience. Doku offers both light and dark mode, to allow players to enjoy Doku at anytime. The color coordinated bubbles also allow the player the option to focus more on color pattterns rather than number ones. The grid background breaks up the 9x9 grid into smaller 3x3 grids, which helps the player see what numbers are missing from each box.</p>
+
+<p>There are some game mechanics that help players as well.</p>
+
+<p>Numbers that are placed by the player are bolded, which match the bolded button bubbles at the bottom of the screen. This slight change in the weight of the font not only allows players to differentiate the pre-generated bubbles with thie own guesses, but allows players to visually see their progress in completing the puzzle.</p>
+
+<p>Doku also has a “helping-hand” system designed to guide players along while playing. If a player places the wrong answer on a bubble, a small animation on top of their guess plays, giving a visual indication that their answer is incorrect. The color of their guess still peaks out from behind their number guess, so players know what number they tried originally. There is no impact on the player for an incorrect guess so they can simply tap the bubble again to remove the wrong guess and try again.</p>
+
+<p>Players select a number/color from the button bubbles at the bottom of the screen and that switches them into placement mode for that specific number. Their current selection will be slightly larger than the other buttons, so that they always know what bubbles they are currently placing without having to actually place one on the board. This focus on one bubble type at a time, slows the game down and allows the player to think about one number or color at a time rather than everything all at once.</p>
+
+<p>Not only do the bubble buttons grow and shrink in size, but as another “helping-hand” feature, when a player has filled in the maximum amount for that type of bubble (9), the bubble button greys out and more of that type of bubble cannot be placed on the board.</p>
+
+<p>When players finish a puzzle correctly, they are greeted with a congratulation message.</p>
+
+<h3 id="playing-a-round-of-doku"><strong>Playing a Round of Doku</strong></h3>
+
+<p><strong>insert video of Doku game here</strong></p>
+
+  </div>
+
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Doku/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Calla Punsalang</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Calla Punsalang</li><li><a class="u-email" href="mailto:ckpunsalang@gmail.com">ckpunsalang@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/CKPunsalang"><svg class="svg-icon"><use xlink:href="/Doku/assets/minima-social-icons.svg#github"></use></svg> <span class="username">CKPunsalang</span></a></li><li><a href="https://www.linkedin.com/in/calla-punsalang-360a16290"><svg class="svg-icon"><use xlink:href="/Doku/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">calla-punsalang-360a16290</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hi, I&#39;m Calla Punsalang. CSU Channel Islands undergraduate with a B.S. in Computer Science, Minor in Mathematics. Graduate of DeAnza College with A.A in Liberal Arts with a focus in Science, Mathematics, and Engineering.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
