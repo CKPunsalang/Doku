@@ -12,7 +12,7 @@ struct NumberButton: View {
     var buttonNumber: Int = 1
     var action: (NumberButton) -> Void = { _ in }
     var selectedNumberButton: Int? = -1
-    var numColor: Color = .white
+    var numColor: Color = Color.white
     var body: some View {
         Button {
             action(self)

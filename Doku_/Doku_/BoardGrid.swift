@@ -28,6 +28,7 @@ struct BoardGrid: View {
     @State var difficulty: Int
     @State private var gameWon: Bool = false
     @State var correct: Bool = false
+    var numberedBubbles: Color
 
     
     var body: some View {
@@ -50,7 +51,7 @@ struct BoardGrid: View {
                 ForEach(0..<generatedBoard.count, id: \.self) { rowIndex in
                     GridRow {
                         ForEach(0..<generatedBoard[rowIndex].count, id: \.self) { colIndex in
-                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex], truth: $generatedNumbers[rowIndex][colIndex], correct: $correctness[rowIndex][colIndex])
+                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex], truth: $generatedNumbers[rowIndex][colIndex], correct: $correctness[rowIndex][colIndex], numColor: numberedBubbles)
                                 .onTapGesture {
                                     handleCellTap(rowIndex: rowIndex, colIndex: colIndex)
                                     
@@ -77,74 +78,74 @@ struct BoardGrid: View {
                 GridRow {
                     // 1
                     if frequencyCheck(&generatedBoard, 1) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuTeal, number: 1)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuTeal, number: 1, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 1)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 1, numColor: numberedBubbles)
                     }
                     
                     //2
                     if frequencyCheck(&generatedBoard, 2) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuYellow, number: 2)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuYellow, number: 2, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 2)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 2, numColor: numberedBubbles)
                     }
                     
                     // 3
                     if frequencyCheck(&generatedBoard, 3) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuPurple, number: 3)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuPurple, number: 3, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 3)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 3, numColor: numberedBubbles)
                     }
                     
                     // 4
                     if frequencyCheck(&generatedBoard, 4) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuRed, number: 4)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuRed, number: 4, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 4)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 4, numColor: numberedBubbles)
                     }
                     
                     // 5
                     if frequencyCheck(&generatedBoard, 5) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuBlue, number: 5)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuBlue, number: 5, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 5)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 5, numColor: numberedBubbles)
                     }
                     
                     // 6
                     if frequencyCheck(&generatedBoard, 6) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGreen, number: 6)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGreen, number: 6, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 6)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 6, numColor: numberedBubbles)
                     }
                     
                     // 7
                     if frequencyCheck(&generatedBoard, 7) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuNavy, number: 7)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuNavy, number: 7, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 7)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 7, numColor: numberedBubbles)
                     }
                     
                     // 8
                     if frequencyCheck(&generatedBoard, 8) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuMaroon, number: 8)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuMaroon, number: 8, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 8)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 8, numColor: numberedBubbles)
                     }
                     
                     // 9
                     if frequencyCheck(&generatedBoard, 9) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuOrange, number: 9)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuOrange, number: 9, numColor: numberedBubbles)
                     }
                     else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 9)
+                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 9, numColor: numberedBubbles)
                     }
                 }
             }
@@ -354,35 +355,36 @@ struct BoardGrid: View {
         @Binding var number: Int
         @Binding var truth: Bool
         @Binding var correct: Bool
+        var numColor: Color
         
         var body: some View {
             // Preset
             if truth {
                 switch number {
-                case 1: NumberCircle(color: Color.dokuTeal, number: "1", correct: true)
-                case 2: NumberCircle(color: Color.dokuYellow, number: "2", correct: true)
-                case 3: NumberCircle(color: Color.dokuPurple, number: "3", correct: true)
-                case 4: NumberCircle(color: Color.dokuRed, number: "4", correct: true)
-                case 5: NumberCircle(color: Color.dokuBlue, number: "5", correct: true)
-                case 6: NumberCircle(color: Color.dokuGreen, number: "6", correct: true)
-                case 7: NumberCircle(color: Color.dokuNavy, number: "7", correct: true)
-                case 8: NumberCircle(color: Color.dokuMaroon, number: "8", correct: true)
-                case 9: NumberCircle(color: Color.dokuOrange, number: "9", correct: true)
-                default: NumberCircle(color: Color.dokuGrey, number: " ", correct: true)  // Empty cell
+                case 1: NumberCircle(color: Color.dokuTeal, number: "1", numColor: numColor, correct: true)
+                case 2: NumberCircle(color: Color.dokuYellow, number: "2", numColor: numColor, correct: true)
+                case 3: NumberCircle(color: Color.dokuPurple, number: "3", numColor: numColor, correct: true)
+                case 4: NumberCircle(color: Color.dokuRed, number: "4", numColor: numColor, correct: true)
+                case 5: NumberCircle(color: Color.dokuBlue, number: "5", numColor: numColor, correct: true)
+                case 6: NumberCircle(color: Color.dokuGreen, number: "6", numColor: numColor, correct: true)
+                case 7: NumberCircle(color: Color.dokuNavy, number: "7", numColor: numColor, correct: true)
+                case 8: NumberCircle(color: Color.dokuMaroon, number: "8", numColor: numColor, correct: true)
+                case 9: NumberCircle(color: Color.dokuOrange, number: "9", numColor: numColor, correct: true)
+                default: NumberCircle(color: Color.dokuGrey, number: " ", numColor: numColor, correct: true)  // Empty cell
                 }
             }
             // User
             else {
                 switch number {
-                case 1: NumberCircle(color: Color.dokuTeal, fontType: .bold, number: "1", correct: correct)
-                case 2: NumberCircle(color: Color.dokuYellow, fontType: .bold, number: "2", correct: correct)
-                case 3: NumberCircle(color: Color.dokuPurple, fontType: .bold, number: "3", correct: correct)
-                case 4: NumberCircle(color: Color.dokuRed, fontType: .bold, number: "4", correct: correct)
-                case 5: NumberCircle(color: Color.dokuBlue, fontType: .bold, number: "5", correct: correct)
-                case 6: NumberCircle(color: Color.dokuGreen, fontType: .bold, number: "6", correct: correct)
-                case 7: NumberCircle(color: Color.dokuNavy, fontType: .bold, number: "7", correct: correct)
-                case 8: NumberCircle(color: Color.dokuMaroon, fontType: .bold, number: "8", correct: correct)
-                case 9: NumberCircle(color: Color.dokuOrange, fontType: .bold, number: "9", correct: correct)
+                case 1: NumberCircle(color: Color.dokuTeal, fontType: .bold, number: "1", numColor: numColor, correct: correct)
+                case 2: NumberCircle(color: Color.dokuYellow, fontType: .bold, number: "2", numColor: numColor, correct: correct)
+                case 3: NumberCircle(color: Color.dokuPurple, fontType: .bold, number: "3", numColor: numColor, correct: correct)
+                case 4: NumberCircle(color: Color.dokuRed, fontType: .bold, number: "4", numColor: numColor, correct: correct)
+                case 5: NumberCircle(color: Color.dokuBlue, fontType: .bold, number: "5", numColor: numColor, correct: correct)
+                case 6: NumberCircle(color: Color.dokuGreen, fontType: .bold, number: "6", numColor: numColor, correct: correct)
+                case 7: NumberCircle(color: Color.dokuNavy, fontType: .bold, number: "7", numColor: numColor, correct: correct)
+                case 8: NumberCircle(color: Color.dokuMaroon, fontType: .bold, number: "8", numColor: numColor, correct: correct)
+                case 9: NumberCircle(color: Color.dokuOrange, fontType: .bold, number: "9", numColor: numColor, correct: correct)
                 default: NumberCircle(color: Color.dokuGrey, number: " ", correct: correct)  // Empty cell
                 }
             }
@@ -416,7 +418,7 @@ struct BoardGrid: View {
 }
 
 #Preview {
-    BoardGrid(selectedNumber: 5, difficulty: 10)
+    BoardGrid(selectedNumber: 5, difficulty: 10, numberedBubbles: Color.white)
         .background() {
             Color.dokuDarkGrey
                 .ignoresSafeArea()

@@ -11,7 +11,7 @@ struct NumberButtonsGrid: View {
     @Binding var selectedNumber: Int
     var buttonColor = Color.dokuGrey
     var number = 0
-    var numColor: Color = .white
+    var numColor: Color = Color.white
     var body: some View {
         NumberButton(color: buttonColor, buttonNumber: number, action: buttonWasPressed, numColor: numColor)
             .scaleEffect(selectedNumber == number ? 1.3 : 1.0) // Slightly larger if selected
