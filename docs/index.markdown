@@ -17,7 +17,7 @@ title: Home
 
 ### *Latest Project*
 
-<a href="/Doku/doku">
+<a href="/Doku/projects/doku/">
 	<img src="/Doku/images/doku_main.png"
 		 alt="Latest Project"
 	 	 height="289">

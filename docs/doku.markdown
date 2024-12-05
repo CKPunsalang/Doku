@@ -4,7 +4,7 @@ title: Doku
 permalink: /projects/doku/
 ---
 
-## *[Doku Poster]({{ site.baseurl  }}{% link /content/capstone_poster_final_true.pdf %}){:target="_blank"}*
+## *[Doku Poster (Capstone Presentation 12/06/24)]({{ site.baseurl  }}{% link /content/capstone_poster_final_true.pdf %}){:target="_blank"}*
 
 ## **Concept**
 
@@ -88,7 +88,7 @@ There are some game mechanics that help players as well.
 
 Numbers that are placed by the player are bolded, which match the bolded button bubbles at the bottom of the screen. This slight change in the weight of the font not only allows players to differentiate the pre-generated bubbles with thie own guesses, but allows players to visually see their progress in completing the puzzle. 
 
-<img src="/Doku/images/doku_wrong.png" alt="Doku Stage 6" width="292" height="579">
+<img src="/Doku/images/doku_wrong.png" alt="Doku with incorrect guesses" width="292" height="579">
 
 Doku also has a "helping-hand" system designed to guide players along while playing. If a player places the wrong answer on a bubble, a small animation on top of their guess plays, giving a visual indication that their answer is incorrect. The color of their guess still peaks out from behind their number guess, so players know what number they tried originally. There is no impact on the player for an incorrect guess so they can simply tap the bubble again to remove the wrong guess and try again.
 
@@ -100,7 +100,13 @@ Not only do the bubble buttons grow and shrink in size, but as another "helping-
 
 **Insert Photo of Numberless Light Mode** **Inster Photo of Numberless Dark Mode**
 
-There is also the option to remove the numbers completely, which allows players to use only the colors as their guide to fill up the Sudoku board. Some may find this more difficult as they used both colors and numbers to find patterns, while others may enjoy the lack of visual stimulation and find it easier to just match colors. The "helping-hand" system still functions in this mode, so when a player places the wrong color bubble, they are still have a visual indication. When a player puts down the correct colored bubble, there are no visual indiciations which keeps up with the minimalistic style that numberless mode provides.  
+<img src="/Doku/images/doku_example.png" alt="Doku Stage 6" width="292" height="579">
+
+There is also the option to remove the numbers completely, which allows players to use only the colors as their guide to fill up the Sudoku board. Some may find this more difficult as they used both colors and numbers to find patterns, while others may enjoy the lack of visual stimulation and find it easier to just match colors. 
+
+**Insert Photo Of Numerless With Wrong Guesses**
+
+The "helping-hand" system still functions in this mode, so when a player places the wrong color bubble, they are still have a visual indication. When a player puts down the correct colored bubble, there are no visual indiciations which keeps up with the minimalistic style that numberless mode provides.  
 
 <img src="/Doku/images/doku_congrats.png" alt="Doku Stage 6" width="292" height="579">
 
