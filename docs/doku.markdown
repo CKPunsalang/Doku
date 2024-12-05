@@ -6,7 +6,7 @@ permalink: /projects/doku/
 
 ## *[Doku Poster]({{ site.baseurl  }}{% link /content/capstone_poster_final_true.pdf %}){:target="_blank"}*
 
-### **Concept**
+## **Concept**
 
 I wanted to create a Sudoku app that made Sudoku more enticing to a wider range of audience. Traditional black-and-white Sudoku grids, while functional, can feel overly clinical, uninspiring, and rather boring, especially for those new to the game. The lack of visual variety makes the puzzle seem intimidating or monotonous, rather than inviting or fun. This minimalistic design can unintentionally give the impression that Sudoku is a rigid or purely intellectual exercise, alienating people who prefer visually stimulating or interactive experiences.
 
@@ -24,7 +24,7 @@ Doku does not change the game of Sudoku, it simply gives it a new look and adds 
 1. The same number cannot be repeated in the same **column**
 1. The same number cannot be repeated in the same **3x3 sqaure**
 
-### **Implementation**
+## **Implementation**
 
 While Doku is written entirely in Swift and SwiftUI now, it did not start off that way.
 
@@ -48,7 +48,6 @@ From here, I created the UI elements needed to actually play a game of Sudoku. B
 
 This is the output of the Python generatated Sudoku puzzles. The top grid of numbers is the generated puzzle, and the bottom is the solved version.
 
-
 <img src="/Doku/images/doku_stage1.png" alt="Doku Stage 1" width="292" height="579">
 
 At this stage, there is still no backend for Doku as the puzzle algorithm is still in Python. However, I wanted to get a feel for using Swift and SwiftUI so I made a base grid for where and how I would want the puzzle to generate. 
@@ -57,27 +56,23 @@ At this stage, there is still no backend for Doku as the puzzle algorithm is sti
 
 This stage is similar to the previous one. I'm continuing to add and play around more with SwiftUI and various UI elements, there is still no puzzle generating algorithm.
 
-
 <img src="/Doku/images/doku_stage3.png" alt="Doku Stage 3" width="292" height="579">
 
 The UI has stayed the same at this stage, but there is now a backend working. On the grid there are some numbers that are filled out, still no puzzle generating algorithm but I wanted to test out how the grid would look with numbers filled in. Filling in random numbers also allowed me to play with the spacing of the numbers.
-
 
 <img src="/Doku/images/doku_stage4.png" alt="Doku Stage 4" width="292" height="579">
 
 There is now a number line of buttons at the bottom of the screen. When clicked, the corresponding number would show in Xcode's debugging terminal, but not on the actual screen. There was also a major overhaul of the grid UI, now following the more bubble-y and playful nature that Doku is intended to have. Although not shown, at this point the Python algorithm had been convereted to Swift and I was working on debugging it through Swift Playgrounds.
 
-
 <img src="/Doku/images/doku_stage5.png" alt="Doku Stage 5" width="292" height="579">
 
 The puzzle generation is now working and generates puzzles in their correct place and corresponding colors. The number line works too and allows players to fill in their guesses on the puzzle board (the bolded numbers are numbers placed by the player). The puzzles are not generated automatically at this point, as the Doku logo needs to be pressed to generate one.
-
 
 <img src="/Doku/images/doku_stage6.png" alt="Doku Stage 6" width="292" height="579">
 
 This is where Doku is currently at. There is a working number line at the bottom for players to fill in their guesses and the puzzle is automatically generated with the page loading. 
 
-### **Features**
+## **Features**
 
 While Doku doesn't change the rules of Sudoku, there are various features that make the game more accessible to those who want to pick up the game or those who struggle with regular Sudoku.
 
@@ -103,14 +98,16 @@ Players select a number/color from the button bubbles at the bottom of the scree
 
 Not only do the bubble buttons grow and shrink in size, but as another "helping-hand" feature, when a player has filled in the maximum amount for that type of bubble (9), the bubble button greys out and more of that type of bubble cannot be placed on the board.
 
+**Insert Photo of Numberless Light Mode** **Inster Photo of Numberless Dark Mode**
+
+There is also the option to remove the numbers completely, which allows players to use only the colors as their guide to fill up the Sudoku board. Some may find this more difficult as they used both colors and numbers to find patterns, while others may enjoy the lack of visual stimulation and find it easier to just match colors. The "helping-hand" system still functions in this mode, so when a player places the wrong color bubble, they are still have a visual indication. When a player puts down the correct colored bubble, there are no visual indiciations which keeps up with the minimalistic style that numberless mode provides.  
+
 <img src="/Doku/images/doku_congrats.png" alt="Doku Stage 6" width="292" height="579">
 
 When players finish a puzzle correctly, they are greeted with a congratulation message. 
 
 
-### **Playing a Round of Doku**
-
-**insert video of Doku game here**
+## **Playing a Round of Doku**
 
 <video width="292" 
 	   height="579"

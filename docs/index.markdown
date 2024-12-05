@@ -7,28 +7,19 @@ title: Home
 
 ---
 
-*[Calla Punsalang's Resume]({{ site.baseurl }}{% link /content/CKPunsalang_Resume_110724.pdf %}){:target="_blank"}*
+### *Calla Punsalang Resume*
 
-<body>
-	<div>
-		<a href="/Doku/about">
-			<img src="/Doku/images/doku_dark.png" 
-				 alt="Picture of Calla Punsalang"
-				 width="389" 
-				 height="579">
-		</a> 
-		<a href="/Doku/content/CKPunsalang_Resume_110724.pdf">
-			<img src="/Doku/content/CKPunsalang_Resume_110724.pdf"
-				 alt="Calla Punsalang's Resume"
-				 width="389" 
-				 height="579">
-		</a> 
-		<a href="/Doku/doku">
-			<img src="/Doku/images/doku_main.png"
-				 alt="Latest Project"
-				 width="389" 
-				 height="579">
-		</a>
-	</div>
-</body>
+<a href="/Doku/content/CKPunsalang_Resume_110724.pdf">
+	<img src="/Doku/content/CKPunsalang_Resume_110724.pdf"
+		 alt="Calla Punsalang's Resume" 
+		 height="289">
+</a> 
+
+### *Latest Project*
+
+<a href="/Doku/doku">
+	<img src="/Doku/images/doku_main.png"
+		 alt="Latest Project"
+	 	 height="289">
+</a>
 
