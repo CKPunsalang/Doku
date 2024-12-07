@@ -33,35 +33,46 @@ struct ContentView: View {
 struct SecondView: View {
     @State var selectedDifficulty: Int = 40
     @State private var navigateToThirdView = false
+    @State private var showNumbers = true
+    private var numberedBubbles: Color {
+        showNumbers ? Color.white : Color.clear
+    }
     var body: some View {
-        VStack {
-            ZStack {
-                Image("dokuSwirl")
-                    .resizable()
-                    .frame(width: 1000, height: 1000, alignment: .center)
-                    .ignoresSafeArea()
-                VStack {
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 5), label: {
-                        Image("dokuEasy")
-                            .resizable()
-                            .frame(width: 150, height: 75, alignment: .leading)
-                    })
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 40), label: {
-                        Image("dokuMedium")
-                            .resizable()
-                            .frame(width: 150, height: 75, alignment: .leading)
-                    })
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 55), label: {
-                        Image("dokuHard")
-                            .resizable()
-                            .frame(width: 150, height: 75, alignment: .leading)
-                    })
-                    NavigationLink(destination: ThirdView(selectedDifficulty: 70), label: {
-                        Image("dokuExpert")
-                            .resizable()
-                            .frame(width: 150, height: 75, alignment: .leading)
-                    })
-                }
+        ZStack {
+            Image("dokuSwirl")
+                .resizable()
+                .frame(width: 1000, height: 1000, alignment: .center)
+                .ignoresSafeArea()
+            VStack {
+                Toggle(showNumbers ? "Numbers On" : "Numbers Off", isOn: $showNumbers)
+                    .toggleStyle(.button)
+                    .tint(.mint)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .top)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
+                
+                NavigationLink(destination: ThirdView(selectedDifficulty: 5, numberedBubbles: numberedBubbles), label: {
+                    Image("dokuEasy")
+                        .resizable()
+                        .frame(width: 150, height: 75, alignment: .leading)
+                })
+                NavigationLink(destination: ThirdView(selectedDifficulty: 40, numberedBubbles: numberedBubbles), label: {
+                    Image("dokuMedium")
+                        .resizable()
+                        .frame(width: 150, height: 75, alignment: .leading)
+                })
+                NavigationLink(destination: ThirdView(selectedDifficulty: 55, numberedBubbles: numberedBubbles), label: {
+                    Image("dokuHard")
+                        .resizable()
+                        .frame(width: 150, height: 75, alignment: .leading)
+                })
+                NavigationLink(destination: ThirdView(selectedDifficulty: 70, numberedBubbles: numberedBubbles), label: {
+                    Image("dokuExpert")
+                        .resizable()
+                        .frame(width: 150, height: 75, alignment: .leading)
+                })
             }
         }
     }
@@ -69,9 +80,10 @@ struct SecondView: View {
 
 struct ThirdView: View {
     var selectedDifficulty: Int
+    var numberedBubbles: Color
     var body: some View {
         VStack {
-            BoardGrid(difficulty: selectedDifficulty)
+            BoardGrid(difficulty: selectedDifficulty, numberedBubbles: numberedBubbles)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background() {
