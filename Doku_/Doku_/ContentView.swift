@@ -47,7 +47,7 @@ struct SecondView: View {
                 Toggle(showNumbers ? "Numbers On" : "Numbers Off", isOn: $showNumbers)
                     .toggleStyle(.button)
                     .tint(.mint)
-                    .padding() // Add some spacing
+                    .padding()
                     .frame(maxWidth: .infinity, alignment: .top)
                     .font(.largeTitle)
                     .fontWeight(.bold)
