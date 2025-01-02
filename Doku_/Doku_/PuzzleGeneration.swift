@@ -1,16 +1,18 @@
 //
-//  SudokuLogic.swift
+//  PuzzleGeneration.swift
 //  Doku_
 //
-//  Created by Calla Punsalang on 9/23/24.
+//  Created by Calla Punsalang on 12/7/24.
 //
+//  The solve(), valid(), printBoard(), and findEmpty() are based on Python code by Tech With Tim
+//
+//  Link to the webpage:
+//  https://www.techwithtim.net/tutorials/python-programming/sudoku-solver-backtracking/part-2
+//
+//  Link to the YouTube video:
+//  https://www.youtube.com/watch?v=lK4N8E6uNr4
 
-import UIKit
 import Foundation
-
-// Create an empty 9x9 Sudoku board
-var generatedBoard = Array(repeating: Array(repeating: 0, count: 9), count: 9)
-//print(generatedBoard)
 
 // Fill a 3x3 block with random numbers
 func fillDiagonal() -> [Int] {
@@ -52,6 +54,7 @@ func fillDiagonalBlocks(_ filledBlock: [Int], _ generatedBoard: inout [[Int]]) {
 }
 
 // Sudoku solver algorithm
+
 func solve(_ bo: inout [[Int]]) -> Bool {
     guard let find = findEmpty(bo) else { return true }
     let (row, col) = find
@@ -132,38 +135,20 @@ func findEmpty(_ bo: [[Int]]) -> (Int, Int)? {
     return nil
 }
 
-func createPuzzle(_ toSolve: inout [[Int]]) {
-    let rowToRemove = (0..<40).map { _ in Int.random(in: 0...8) }
-    let colToRemove = (0..<40).map { _ in Int.random(in: 0...8) }
+func createPuzzle(_ toSolve: inout [[Int]], _ difficulty: inout Int) {
+    let rowToRemove = (0..<difficulty).map { _ in Int.random(in: 0...8) }
+    let colToRemove = (0..<difficulty).map { _ in Int.random(in: 0...8) }
     
-    for index in 0..<40 {
+    for index in 0..<difficulty {
         toSolve[rowToRemove[index]][colToRemove[index]] = 0
     }
 }
 
-func isSolvable(_ toSolve: inout [[Int]]) -> [[Int]] {
+func isSolvable(_ toSolve: inout [[Int]], _ difficulty: inout Int) -> [[Int]] {
     var unsolved = toSolve
     while !solve(&toSolve) {
-        createPuzzle(&unsolved)
-        var puzzleBoard = isSolvable(&unsolved)
+        createPuzzle(&unsolved, &difficulty)
+        var puzzleBoard = isSolvable(&unsolved, &difficulty)
     }
     return unsolved
 }
-
-@MainActor func runDoku(_ generatedBoard: inout [[Int]]) -> [[Int]] {
-    let tempBoard = fillDiagonal() + fillDiagonal() + fillDiagonal()
-    fillDiagonalBlocks(tempBoard, &generatedBoard)
-    
-    _ = solve(&generatedBoard)
-    
-    var unsolvedBoard = generatedBoard
-    createPuzzle(&unsolvedBoard)
-    
-    var puzzleBoard = isSolvable(&unsolvedBoard)
-    
-    return puzzleBoard
-}
-
-// Run the Sudoku generator and solver
-//var puzzleBoard = runDoku(&generatedBoard)
-//print(puzzleBoard)

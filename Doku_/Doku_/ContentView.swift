@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var testText: String = "This is a test"
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,6 +25,12 @@ struct ContentView: View {
                             .resizable()
                             .frame(width: 150, height: 75, alignment: .leading)
                     })
+                    NavigationLink(destination: Settings(testText: testText), label: {
+                        Text("Settings")
+                    })
+                }
+                VStack {
+                    Text("Test Text: \(testText)")
                 }
             }
         }
@@ -91,6 +98,23 @@ struct ThirdView: View {
                 .resizable()
                 .frame(width: 1000, height: 1000, alignment: .center)
                 .ignoresSafeArea()
+        }
+    }
+}
+
+struct Settings: View {
+    var testText: String = "Hello, World!"
+    var body: some View {
+        ZStack {
+            Image("dokuSwirl")
+                .resizable()
+                .frame(width: 1000, height: 1000, alignment: .center)
+                .ignoresSafeArea()
+        
+            VStack {
+                Text("Settings Page")
+                Text("Test Text: \(testText)")
+            }
         }
     }
 }

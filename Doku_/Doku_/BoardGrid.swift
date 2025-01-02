@@ -3,14 +3,6 @@
 //  Doku_
 //
 //  Created by Calla Punsalang on 9/18/24.
-//
-// The solve(), valid(), printBoard(), and findEmpty() are based on Python code by Tech With Tim
-//
-// Link to the webpage:
-// https://www.techwithtim.net/tutorials/python-programming/sudoku-solver-backtracking/part-2
-//
-// Link to the YouTube video:
-// https://www.youtube.com/watch?v=lK4N8E6uNr4
 
 import SwiftUI
 import UIKit
@@ -32,14 +24,15 @@ struct BoardGrid: View {
 
     
     var body: some View {
+        // VStack so that board is automatically generated upon screen generation 
         VStack {
 
         }
         .onAppear {
-            generatedBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
-            generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
             let boards = runDoku(&generatedBoard, &difficulty)
+            // generatedBoard becomes the Sudoku puzzle
             generatedBoard = boards.puzzle
+            // checkBoard is the completed puzzle used to check player input on generatedBoard
             checkBoard = boards.complete
             generatedNumbers = presetGenerator(&generatedNumbers)
         }
@@ -47,11 +40,19 @@ struct BoardGrid: View {
         ZStack {
             BackgroundGrid()
             
+            // Grid generation using numbers from generatedBoard
             Grid {
                 ForEach(0..<generatedBoard.count, id: \.self) { rowIndex in
                     GridRow {
                         ForEach(0..<generatedBoard[rowIndex].count, id: \.self) { colIndex in
-                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex], truth: $generatedNumbers[rowIndex][colIndex], correct: $correctness[rowIndex][colIndex], numColor: numberedBubbles)
+                            // number[Int] holds the current value in that index (whether a generated number or user placed)
+                            // truth[Int] holds the correct value for that index
+                            // correct[Bool] holds the truth value for whether number[Int] and truth[Int] match
+                            // numColor is set on ContentView, if numbered 
+                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex],
+                                             truth: $generatedNumbers[rowIndex][colIndex],
+                                             correct: $correctness[rowIndex][colIndex],
+                                             numColor: numberedBubbles)
                                 .onTapGesture {
                                     handleCellTap(rowIndex: rowIndex, colIndex: colIndex)
                                     
@@ -66,231 +67,38 @@ struct BoardGrid: View {
 
             }
         }
-
-        
         
         ZStack {
+            // Black bar behind buttons
             Divider()
                 .frame(height: 5)
                 .background(Color.black)
                 .opacity(0.75)
+            
+            // Number buttons row
             Grid {
                 GridRow {
-                    // 1
-                    if frequencyCheck(&generatedBoard, 1) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuTeal, number: 1, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 1, numColor: numberedBubbles)
-                    }
+                    // Array of Color that holds the correct sequence of colors for the associated number
+                    let colors: [Color] = [
+                        .dokuTeal, .dokuYellow, .dokuPurple,
+                        .dokuRed, .dokuBlue, .dokuGreen,
+                        .dokuNavy, .dokuMaroon, .dokuOrange
+                    ]
                     
-                    //2
-                    if frequencyCheck(&generatedBoard, 2) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuYellow, number: 2, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 2, numColor: numberedBubbles)
-                    }
-                    
-                    // 3
-                    if frequencyCheck(&generatedBoard, 3) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuPurple, number: 3, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 3, numColor: numberedBubbles)
-                    }
-                    
-                    // 4
-                    if frequencyCheck(&generatedBoard, 4) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuRed, number: 4, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 4, numColor: numberedBubbles)
-                    }
-                    
-                    // 5
-                    if frequencyCheck(&generatedBoard, 5) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuBlue, number: 5, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 5, numColor: numberedBubbles)
-                    }
-                    
-                    // 6
-                    if frequencyCheck(&generatedBoard, 6) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuGreen, number: 6, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 6, numColor: numberedBubbles)
-                    }
-                    
-                    // 7
-                    if frequencyCheck(&generatedBoard, 7) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuNavy, number: 7, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 7, numColor: numberedBubbles)
-                    }
-                    
-                    // 8
-                    if frequencyCheck(&generatedBoard, 8) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuMaroon, number: 8, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 8, numColor: numberedBubbles)
-                    }
-                    
-                    // 9
-                    if frequencyCheck(&generatedBoard, 9) {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuOrange, number: 9, numColor: numberedBubbles)
-                    }
-                    else {
-                        NumberButtonsGrid(selectedNumber: $selectedNumber, buttonColor: Color.dokuDarkGrey, number: 9, numColor: numberedBubbles)
+                    ForEach(1...9, id: \ .self) { number in
+                        // buttonColor is either the associated color in colors[Color], or .dokuDarkGrey depending on the boolean value from frequencyCheck
+                        let buttonColor = frequencyCheck(&generatedBoard, number) ? colors[number - 1] : .dokuDarkGrey
+                        NumberButtonsGrid(
+                            selectedNumber: $selectedNumber,
+                            buttonColor: buttonColor,
+                            number: number,
+                            numColor: numberedBubbles
+                        )
                     }
                 }
             }
-                .padding()
+            .padding()
         }
-    }
-
-    
-    // Fill a 3x3 block with random numbers
-    func fillDiagonal() -> [Int] {
-        var used: Set<Int> = []
-        var currBlock: [Int] = []
-        
-        for _ in 0..<9 {
-            var currNum = Int.random(in: 1...9)
-            while used.contains(currNum) {
-                currNum = Int.random(in: 1...9)
-            }
-            used.insert(currNum)
-            currBlock.append(currNum)
-        }
-        return currBlock
-    }
-
-    // Fill the diagonal 3x3 blocks of the Sudoku board
-    func fillDiagonalBlocks(_ filledBlock: [Int], _ generatedBoard: inout [[Int]]) {
-        var index = 0
-        for row0 in 0..<3 {
-            for col0 in 0..<3 {
-                generatedBoard[row0][col0] = filledBlock[index]
-                index += 1
-            }
-        }
-        for row4 in 3..<6 {
-            for col4 in 3..<6 {
-                generatedBoard[row4][col4] = filledBlock[index]
-                index += 1
-            }
-        }
-        for row8 in 6..<9 {
-            for col8 in 6..<9 {
-                generatedBoard[row8][col8] = filledBlock[index]
-                index += 1
-            }
-        }
-    }
-
-    // Sudoku solver algorithm
-    
-    func solve(_ bo: inout [[Int]]) -> Bool {
-        guard let find = findEmpty(bo) else { return true }
-        let (row, col) = find
-        
-        for i in 1...9 {
-            if valid(bo, num: i, pos: (row, col)) {
-                bo[row][col] = i
-                
-                if solve(&bo) {
-                    return true
-                }
-                
-                bo[row][col] = 0
-            }
-        }
-        
-        return false
-    }
-
-    func valid(_ bo: [[Int]], num: Int, pos: (Int, Int)) -> Bool {
-        // Check row
-        for i in 0..<bo[0].count {
-            if bo[pos.0][i] == num && pos.1 != i {
-                return false
-            }
-        }
-        
-        // Check column
-        for i in 0..<bo.count {
-            if bo[i][pos.1] == num && pos.0 != i {
-                return false
-            }
-        }
-        
-        // Check box
-        let boxX = pos.1 / 3
-        let boxY = pos.0 / 3
-        
-        for i in (boxY*3)..<(boxY*3 + 3) {
-            for j in (boxX*3)..<(boxX*3 + 3) {
-                if bo[i][j] == num && (i, j) != pos {
-                    return false
-                }
-            }
-        }
-        
-        return true
-    }
-
-    func printBoard(_ bo: [[Int]]) {
-        for i in 0..<bo.count {
-            if i % 3 == 0 && i != 0 {
-                print("- - - - - - - - - - - - - ")
-            }
-            
-            for j in 0..<bo[0].count {
-                if j % 3 == 0 && j != 0 {
-                    print(" | ", terminator: "")
-                }
-                
-                if j == 8 {
-                    print(bo[i][j])
-                } else {
-                    print("\(bo[i][j]) ", terminator: "")
-                }
-            }
-        }
-    }
-
-    func findEmpty(_ bo: [[Int]]) -> (Int, Int)? {
-        for i in 0..<bo.count {
-            for j in 0..<bo[0].count {
-                if bo[i][j] == 0 {
-                    return (i, j)
-                }
-            }
-        }
-        return nil
-    }
-
-    func createPuzzle(_ toSolve: inout [[Int]], _ difficulty: inout Int) {
-        let rowToRemove = (0..<difficulty).map { _ in Int.random(in: 0...8) }
-        let colToRemove = (0..<difficulty).map { _ in Int.random(in: 0...8) }
-        
-        for index in 0..<difficulty {
-            toSolve[rowToRemove[index]][colToRemove[index]] = 0
-        }
-    }
-
-    func isSolvable(_ toSolve: inout [[Int]], _ difficulty: inout Int) -> [[Int]] {
-        var unsolved = toSolve
-        while !solve(&toSolve) {
-            createPuzzle(&unsolved, &difficulty)
-            var puzzleBoard = isSolvable(&unsolved, &difficulty)
-        }
-        return unsolved
     }
 
     @MainActor func runDoku(_ generatedBoard: inout [[Int]], _ difficulty: inout Int) -> (complete: [[Int]], puzzle: [[Int]]) {
@@ -349,46 +157,6 @@ struct BoardGrid: View {
             print("Puzzle Solved")
         }
         return correct
-    }
-    
-    struct NumberCircleView: View {
-        @Binding var number: Int
-        @Binding var truth: Bool
-        @Binding var correct: Bool
-        var numColor: Color
-        
-        var body: some View {
-            // Preset
-            if truth {
-                switch number {
-                case 1: NumberCircle(color: Color.dokuTeal, number: "1", numColor: numColor, correct: true)
-                case 2: NumberCircle(color: Color.dokuYellow, number: "2", numColor: numColor, correct: true)
-                case 3: NumberCircle(color: Color.dokuPurple, number: "3", numColor: numColor, correct: true)
-                case 4: NumberCircle(color: Color.dokuRed, number: "4", numColor: numColor, correct: true)
-                case 5: NumberCircle(color: Color.dokuBlue, number: "5", numColor: numColor, correct: true)
-                case 6: NumberCircle(color: Color.dokuGreen, number: "6", numColor: numColor, correct: true)
-                case 7: NumberCircle(color: Color.dokuNavy, number: "7", numColor: numColor, correct: true)
-                case 8: NumberCircle(color: Color.dokuMaroon, number: "8", numColor: numColor, correct: true)
-                case 9: NumberCircle(color: Color.dokuOrange, number: "9", numColor: numColor, correct: true)
-                default: NumberCircle(color: Color.dokuGrey, number: " ", numColor: numColor, correct: true)  // Empty cell
-                }
-            }
-            // User
-            else {
-                switch number {
-                case 1: NumberCircle(color: Color.dokuTeal, fontType: .bold, number: "1", numColor: numColor, correct: correct)
-                case 2: NumberCircle(color: Color.dokuYellow, fontType: .bold, number: "2", numColor: numColor, correct: correct)
-                case 3: NumberCircle(color: Color.dokuPurple, fontType: .bold, number: "3", numColor: numColor, correct: correct)
-                case 4: NumberCircle(color: Color.dokuRed, fontType: .bold, number: "4", numColor: numColor, correct: correct)
-                case 5: NumberCircle(color: Color.dokuBlue, fontType: .bold, number: "5", numColor: numColor, correct: correct)
-                case 6: NumberCircle(color: Color.dokuGreen, fontType: .bold, number: "6", numColor: numColor, correct: correct)
-                case 7: NumberCircle(color: Color.dokuNavy, fontType: .bold, number: "7", numColor: numColor, correct: correct)
-                case 8: NumberCircle(color: Color.dokuMaroon, fontType: .bold, number: "8", numColor: numColor, correct: correct)
-                case 9: NumberCircle(color: Color.dokuOrange, fontType: .bold, number: "9", numColor: numColor, correct: correct)
-                default: NumberCircle(color: Color.dokuGrey, number: " ", correct: correct)  // Empty cell
-                }
-            }
-        }
     }
     
     private func handleCellTap(rowIndex: Int, colIndex: Int) {
