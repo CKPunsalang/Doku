@@ -10,94 +10,122 @@ import Foundation
 import AVKit
 
 struct BoardGrid: View {
+    // Empty board given for puzzle generation
     @State private var generatedBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
+    
+    // Board that will keep the original completed puzzle to be used to check against player input
     @State private var checkBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
+    
+    // Boolean board that keeps track on whether a number is one that was generated or if it is user input
     @State private var generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
+    
+    // Boolean board that holds whether the placed value is correct or not
     @State private var correctness = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
+    
+    // Holds index of currently selected cell
     @State private var selectedCell: [Int]? = [-1, -1]
     
+    // Holds value of current number to place (modified by number line)
     @State var selectedNumber: Int = -1
+    
+    // Holds value to indiicate how many numbers should be missing in the puzzle board
     @State var difficulty: Int
+    
     @State private var gameWon: Bool = false
+    
+    // Holds single value of whether that specific cell is correct or not
     @State var correct: Bool = false
+    
+    // Value to indiciate whether numbers should be shown or not (modifies numColor, either white or clear)
     var numberedBubbles: Color
 
-    
     var body: some View {
-        // VStack so that board is automatically generated upon screen generation 
         VStack {
+            // VStack so that board is automatically generated upon screen generation
+            VStack {
 
-        }
-        .onAppear {
-            let boards = runDoku(&generatedBoard, &difficulty)
-            // generatedBoard becomes the Sudoku puzzle
-            generatedBoard = boards.puzzle
-            // checkBoard is the completed puzzle used to check player input on generatedBoard
-            checkBoard = boards.complete
-            generatedNumbers = presetGenerator(&generatedNumbers)
-        }
-        
-        ZStack {
-            BackgroundGrid()
+            }
+            .onAppear {
+                let boards = runDoku(&generatedBoard, &difficulty)
+                
+                // generatedBoard becomes the Sudoku puzzle
+                generatedBoard = boards.puzzle
+                
+                // checkBoard is the completed puzzle used to check player input on generatedBoard
+                checkBoard = boards.complete
+                
+                generatedNumbers = presetGenerator(&generatedNumbers)
+            }
             
-            // Grid generation using numbers from generatedBoard
-            Grid {
-                ForEach(0..<generatedBoard.count, id: \.self) { rowIndex in
-                    GridRow {
-                        ForEach(0..<generatedBoard[rowIndex].count, id: \.self) { colIndex in
-                            // number[Int] holds the current value in that index (whether a generated number or user placed)
-                            // truth[Int] holds the correct value for that index
-                            // correct[Bool] holds the truth value for whether number[Int] and truth[Int] match
-                            // numColor is set on ContentView, if numbered 
-                            NumberCircleView(number: $generatedBoard[rowIndex][colIndex],
-                                             truth: $generatedNumbers[rowIndex][colIndex],
-                                             correct: $correctness[rowIndex][colIndex],
-                                             numColor: numberedBubbles)
-                                .onTapGesture {
-                                    handleCellTap(rowIndex: rowIndex, colIndex: colIndex)
-                                    
-                                }
+            ZStack {
+                BackgroundGrid()
+                
+                // Grid generation using numbers from generatedBoard
+                Grid {
+                    ForEach(0..<generatedBoard.count, id: \.self) { rowIndex in
+                        GridRow {
+                            ForEach(0..<generatedBoard[rowIndex].count, id: \.self) { colIndex in
+                                // number[Int] holds the current value in that index (whether a generated number or user placed)
+                                // truth[Int] holds the correct value for that index
+                                // correct[Bool] holds the truth value for whether number[Int] and truth[Int] match
+                                // numColor is set on ContentView, if numbered
+                                NumberCircleView(number: $generatedBoard[rowIndex][colIndex],
+                                                 truth: $generatedNumbers[rowIndex][colIndex],
+                                                 correct: $correctness[rowIndex][colIndex],
+                                                 numColor: numberedBubbles)
+                                    .onTapGesture {
+                                        handleCellTap(rowIndex: rowIndex, colIndex: colIndex)
+                                        
+                                    }
+                            }
                         }
                     }
                 }
-            }
-            if gameWon {
-                GifImage("congrats")
-                    .frame(width: 400 , height: 200, alignment: .center)
+                if gameWon {
+                    GifImage("congrats")
+                        .frame(width: 400 , height: 200, alignment: .center)
 
-            }
-        }
-        
-        ZStack {
-            // Black bar behind buttons
-            Divider()
-                .frame(height: 5)
-                .background(Color.black)
-                .opacity(0.75)
-            
-            // Number buttons row
-            Grid {
-                GridRow {
-                    // Array of Color that holds the correct sequence of colors for the associated number
-                    let colors: [Color] = [
-                        .dokuTeal, .dokuYellow, .dokuPurple,
-                        .dokuRed, .dokuBlue, .dokuGreen,
-                        .dokuNavy, .dokuMaroon, .dokuOrange
-                    ]
-                    
-                    ForEach(1...9, id: \ .self) { number in
-                        // buttonColor is either the associated color in colors[Color], or .dokuDarkGrey depending on the boolean value from frequencyCheck
-                        let buttonColor = frequencyCheck(&generatedBoard, number) ? colors[number - 1] : .dokuDarkGrey
-                        NumberButtonsGrid(
-                            selectedNumber: $selectedNumber,
-                            buttonColor: buttonColor,
-                            number: number,
-                            numColor: numberedBubbles
-                        )
-                    }
                 }
             }
-            .padding()
+            
+            ZStack {
+                // Black bar behind buttons
+                Divider()
+                    .frame(height: 5)
+                    .background(Color.black)
+                    .opacity(0.75)
+                
+                // Number buttons row
+                Grid {
+                    GridRow {
+                        // Array of Color that holds the correct sequence of colors for the associated number
+                        let colors: [Color] = [
+                            .dokuTeal, .dokuYellow, .dokuPurple,
+                            .dokuRed, .dokuBlue, .dokuGreen,
+                            .dokuNavy, .dokuMaroon, .dokuOrange
+                        ]
+                        
+                        ForEach(1...9, id: \ .self) { number in
+                            // buttonColor is either the associated color in colors[Color], or .dokuDarkGrey depending on the boolean value from frequencyCheck
+                            let buttonColor = frequencyCheck(&generatedBoard, number) ? colors[number - 1] : .dokuDarkGrey
+                            NumberButtonsGrid(
+                                selectedNumber: $selectedNumber,
+                                buttonColor: buttonColor,
+                                number: number,
+                                numColor: numberedBubbles
+                            )
+                        }
+                    }
+                }
+                .padding()
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background() {
+            Image("dokuSwirl")
+                .resizable()
+                .frame(width: 1000, height: 1000, alignment: .center)
+                .ignoresSafeArea()
         }
     }
 
