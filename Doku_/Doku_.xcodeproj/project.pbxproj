@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		3A84B9962CD18286008A2350 /* DifficultyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84B9952CD18286008A2350 /* DifficultyButton.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		3AF7A54E2C9B610400E4C842 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -28,7 +24,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A84B9952CD18286008A2350 /* DifficultyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButton.swift; sourceTree = "<group>"; };
 		3AF7A53D2C9B610200E4C842 /* Doku_.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doku_.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7A54D2C9B610400E4C842 /* Doku_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Doku_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7A5572C9B610400E4C842 /* Doku_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Doku_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +75,6 @@
 		3AF7A5342C9B610200E4C842 = {
 			isa = PBXGroup;
 			children = (
-				3A84B9952CD18286008A2350 /* DifficultyButton.swift */,
 				3AF7A53F2C9B610200E4C842 /* Doku_ */,
 				3AF7A5502C9B610400E4C842 /* Doku_Tests */,
 				3AF7A55A2C9B610400E4C842 /* Doku_UITests */,
@@ -242,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A84B9962CD18286008A2350 /* DifficultyButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

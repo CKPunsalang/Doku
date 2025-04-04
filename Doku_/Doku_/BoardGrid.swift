@@ -10,29 +10,18 @@ import Foundation
 import AVKit
 
 struct BoardGrid: View {
-    // Empty board given for puzzle generation
     @State private var generatedBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
-    
     // Board that will keep the original completed puzzle to be used to check against player input
     @State private var checkBoard = [[Int]](repeating: [Int](repeating: 0, count: 9), count: 9)
-    
     // Boolean board that keeps track on whether a number is one that was generated or if it is user input
     @State private var generatedNumbers = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
-    
     // Boolean board that holds whether the placed value is correct or not
     @State private var correctness = [[Bool]](repeating: [Bool](repeating: false, count: 9), count: 9)
-    
-    // Holds index of currently selected cell
     @State private var selectedCell: [Int]? = [-1, -1]
-    
-    // Holds value of current number to place (modified by number line)
-    @State var selectedNumber: Int = -1
-    
-    // Holds value to indiicate how many numbers should be missing in the puzzle board
-    @State var difficulty: Int
-    
     @State private var gameWon: Bool = false
     
+    @State var selectedNumber: Int = -1
+    @State var difficulty: Int
     // Holds single value of whether that specific cell is correct or not
     @State var correct: Bool = false
     
@@ -59,8 +48,7 @@ struct BoardGrid: View {
             
             ZStack {
                 BackgroundGrid()
-                
-                // Grid generation using numbers from generatedBoard
+    
                 Grid {
                     ForEach(0..<generatedBoard.count, id: \.self) { rowIndex in
                         GridRow {

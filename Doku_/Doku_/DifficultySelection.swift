@@ -16,11 +16,6 @@ struct DifficultySelection: View {
             DifficultyButton(level: levelSelected, difficulty: selectedDifficulty)
         }
     }
-    
-//    func buttonWasPressed(button: DifficultyButton) {
-//        print(button.difficulty)
-//        selectedDifficulty = button.difficulty
-//    }
 }
 
 #Preview {
